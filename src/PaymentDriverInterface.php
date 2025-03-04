@@ -1,6 +1,6 @@
 <?php
 
-namespace UTurakulov\PhpPaymentGateway;
+namespace PhpPaymentGateway;
 
 interface PaymentDriverInterface
 {

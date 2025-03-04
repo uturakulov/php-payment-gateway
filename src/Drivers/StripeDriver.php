@@ -1,8 +1,8 @@
 <?php
 
-namespace UTurakulov\PhpPaymentGateway\Drivers;
+namespace PhpPaymentGateway\Drivers;
 
-use UTurakulov\PhpPaymentGateway\PaymentDriverInterface;
+use PhpPaymentGateway\PaymentDriverInterface;
 
 class StripeDriver implements PaymentDriverInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace UTurakulov\PhpPaymentGateway;
+namespace PhpPaymentGateway;
 
-use UTurakulov\PhpPaymentGateway\Drivers\PaypalDriver;
-use UTurakulov\PhpPaymentGateway\Drivers\StripeDriver;
+use PhpPaymentGateway\Drivers\PaypalDriver;
+use PhpPaymentGateway\Drivers\StripeDriver;
 
 class PaymentGateway
 {

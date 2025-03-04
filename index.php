@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-use UTurakulov\PhpPaymentGateway\PaymentGateway;
+use PhpPaymentGateway\PaymentGateway;
 
 
 echo PaymentGateway::pay(100, 'USD', 'user123');
