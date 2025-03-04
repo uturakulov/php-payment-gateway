@@ -2,42 +2,30 @@
 
 namespace PhpPaymentGateway;
 
-use PhpPaymentGateway\Drivers\PaypalDriver;
 use PhpPaymentGateway\Drivers\StripeDriver;
 
 class PaymentGateway
 {
-    protected static ?PaymentDriverInterface $driver = null;
-    protected static array $drivers = [];
+    protected static $driver;
 
-    public static function driver(string $name): self
+    /**
+     * Установить драйвер вручную
+     */
+    public static function driver($name = null)
     {
-        if (!isset(self::$drivers[$name])) {
-            self::$drivers[$name] = self::resolveDriver($name);
-        }
-        self::$driver = self::$drivers[$name];
-        return new self();
+        $name = $name ?: getenv('PAYMENT_DRIVER');
+
+        return match ($name) {
+            'stripe' => new StripeDriver(getenv('STRIPE_SECRET')),
+            default => throw new \Exception("Unsupported payment driver: {$name}"),
+        };
     }
 
-    public function __call(string $method, array $args)
+    /**
+     * Быстрый вызов оплаты
+     */
+    public static function pay(array $data)
     {
-        if (!self::$driver) {
-            self::driver(getenv('PAYMENT_DRIVER') ?: 'stripe');
-        }
-        return self::$driver->$method(...$args);
-    }
-
-    public static function __callStatic(string $method, array $args)
-    {
-        return (new self())->$method(...$args);
-    }
-
-    protected static function resolveDriver(string $name): PaymentDriverInterface
-    {
-        $drivers = [
-            'stripe' => new StripeDriver(),
-            'paypal' => new PaypalDriver(),
-        ];
-        return $drivers[$name] ?? throw new \Exception("Unsupported driver: $name");
+        return self::driver()->pay($data);
     }
 }

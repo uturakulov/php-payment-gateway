@@ -4,5 +4,5 @@ namespace PhpPaymentGateway;
 
 interface PaymentDriverInterface
 {
-    public function pay(float $amount, string $currency, string $to): bool;
+    public function pay(array $data);
 }
