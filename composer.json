@@ -1,0 +1,18 @@
+{
+    "name": "u_turakulov/php-payment-gateway",
+    "description": "Universal PHP facade for working with different payment systems",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "UTurakulov\\PhpPaymentGateway\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ulugbek Turakulov",
+            "email": "ulugbek.turaqulov311@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
